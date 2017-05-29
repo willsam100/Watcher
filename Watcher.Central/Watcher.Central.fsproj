@@ -144,28 +144,28 @@
     <Compile Include="App.fs" />
     <Compile Include="AssemblyInfo.fs" />
     <None Include="paket.references" />
-    <EmbeddedResource Include="Pages\FirstPage.xaml">
+    <EmbeddedResource Include="FirstPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Compile Include="Pages\FirstPage.xaml.fs">
+    <Compile Include="FirstPage.xaml.fs">
       <DependentUpon>FirstPage.xaml</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Pages\AboutPage.xaml">
+    <EmbeddedResource Include="AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Compile Include="Pages\AboutPage.xaml.fs">
+    <Compile Include="AboutPage.xaml.fs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Pages\ListingsPage.xaml">
+    <EmbeddedResource Include="ListingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Compile Include="Pages\ListingsPage.xaml.fs">
+    <Compile Include="ListingsPage.xaml.fs">
       <DependentUpon>ListingsPage.xaml</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Pages\AddListing.xaml">
+    <EmbeddedResource Include="AddListing.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Compile Include="Pages\AddListing.xaml.fs">
+    <Compile Include="AddListing.xaml.fs">
       <DependentUpon>AddListing.xaml</DependentUpon>
     </Compile>
   </ItemGroup>

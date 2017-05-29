@@ -167,12 +167,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="MvvmCross.Forms.Presenter.Core">
-      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.4.0\lib\Xamarin.iOS10\MvvmCross.Forms.Presenter.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Forms.Presenter.iOS">
-      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.4.0\lib\Xamarin.iOS10\MvvmCross.Forms.Presenter.iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="README_FIRST.txt">

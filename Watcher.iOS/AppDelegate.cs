@@ -3,6 +3,7 @@ using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
 using Foundation;
 using UIKit;
+using MvvmCross.Forms.iOS;
 
 namespace Watcher.iOS
 {
@@ -10,28 +11,22 @@ namespace Watcher.iOS
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register("AppDelegate")]
-	public partial class AppDelegate : MvxApplicationDelegate
+	public partial class AppDelegate : MvxFormsApplicationDelegate
 	{
-		public override UIWindow Window
-		{
-			get;
-			set;
-		}
+		private UIWindow _window;
 
 		public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 		{
 
-			Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
-			var setup = new Setup(this, Window);
+			_window = new UIWindow(UIScreen.MainScreen.Bounds);
+			var setup = new Setup(this, _window);
 			setup.Initialize();
 
-			var startup = Mvx.Resolve<IMvxAppStart>();
-			startup.Start();
+			_window.MakeKeyAndVisible();
 
-			Window.MakeKeyAndVisible();
+			LoadApplication(setup.MvxFormsApp);
 
-			return true;
+			return base.FinishedLaunching(uiApplication, launchOptions); ;
 		}
 	}
 }

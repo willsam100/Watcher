@@ -4,13 +4,12 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using UIKit;
 using Xamarin.Forms;
-using MvvmCross.Forms.Presenter.iOS;
-using MvvmCross.Forms.Presenter.Core;
 using System.IO;
 using static Watcher.Central.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Forms.Core;
 using MvvmCross.Core.Views;
+using MvvmCross.Forms.iOS.Presenters;
 
 namespace Watcher.iOS
 {
@@ -23,14 +22,9 @@ namespace Watcher.iOS
 
 	public class Setup : MvxIosSetup
 	{
-		public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
-	            : base(applicationDelegate, window)
-	    {
-		}
-
-		public Setup(MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
-	            : base(applicationDelegate, presenter)
-	        {
+		public MvxFormsApplication MvxFormsApp { get; private set; }
+		public Setup(IMvxApplicationDelegate applicationDelegate, UIWindow window) : base(applicationDelegate, window)
+        {
 		}
 
 		protected override IMvxApplication CreateApp()
@@ -47,7 +41,19 @@ namespace Watcher.iOS
 		{
 			base.InitializeFirstChance();
 
-			//Mvx.RegisterSingleton<IDatabasePath>(new Database());
+			Mvx.RegisterSingleton<IDatabasePath>(new Database());
+		}
+
+		protected override IMvxIosViewPresenter CreatePresenter()
+		{
+			Forms.Init();
+
+			MvxFormsApp = new Central.WatcherApplication();
+
+			var presenter = new MvxFormsIosPagePresenter(Window, MvxFormsApp);
+			Mvx.RegisterSingleton<IMvxViewPresenter>(presenter);
+
+			return presenter;
 		}
 	}
 }

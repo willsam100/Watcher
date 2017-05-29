@@ -1,4 +1,4 @@
-﻿namespace Watcher.Central.Pages
+﻿namespace Watcher.Central
 
 open Xamarin.Forms
 open Xamarin.Forms.Xaml
