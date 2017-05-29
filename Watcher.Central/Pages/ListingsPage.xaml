@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+				xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+				x:Class="Watcher.Central.Pages.ListingsPage"
+				Title="Listings"
+				Icon="home">
+<!--	            xmlns:behaviors="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors" -->
+<!--				xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"-->
+<ContentPage.Resources>
+	<ResourceDictionary>
+		<Style TargetType="Label">
+			<Setter Property="BackgroundColor" Value="White" />
+			<Setter Property="TextColor" Value="Black" />
+		</Style>
+		<Style TargetType="StackLayout">
+			<Setter Property="BackgroundColor" Value="White" />
+		</Style>
+	</ResourceDictionary>
+</ContentPage.Resources>
+<ContentPage.ToolbarItems>
+	<ToolbarItem Text="Add" Command="{Binding AddListing}"/>
+</ContentPage.ToolbarItems>
+<ListView Margin="0,0,0,0" ItemsSource="{Binding Listings}" HasUnevenRows="True"
+		  IsPullToRefreshEnabled="True"
+		  RefreshCommand="{Binding Refresh}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" BackgroundColor="White">
+<!--  	<behaviors:Interaction.Behaviors>
+		<behaviors:BehaviorCollection>
+			<behaviors:EventToCommand EventName="ItemTapped" Command="{Binding ItemTapped}" PassEventArgument="true"/>
+		</behaviors:BehaviorCollection>
+	</behaviors:Interaction.Behaviors>-->
+	<ListView.ItemTemplate>
+		<DataTemplate>
+			<ViewCell>
+	         	<ViewCell.ContextActions>
+            		<MenuItem Command="{Binding Binding.OnDelete}" Text="Delete" IsDestructive="True" />
+         		</ViewCell.ContextActions>
+					<RelativeLayout HeightRequest="100" MinimumHeightRequest="100">
+					<StackLayout Orientation="Horizontal" HeightRequest="100" MinimumHeightRequest="100" 
+								 HorizontalOptions="FillAndExpand" x:Name="anchorView">
+							<Image Margin="0,2,0,0" WidthRequest="150" HeightRequest="100" MinimumHeightRequest="100" 
+								   Source="{Binding Binding.Image}" BackgroundColor="White" HorizontalOptions="Start"
+								   VerticalOptions="Start" Aspect="Fill" />
+						<StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+							<Label Text="{Binding Binding.Title}" FontSize="15"/>
+							<Label Text="{Binding Binding.Price}" FontSize="14"/>
+							<Label Text="{Binding Binding.Views}" FontSize="14"/>
+						</StackLayout>
+					</StackLayout>
+				    <BoxView Color="#FFD180" Rotation="-45" Opacity=".90" IsVisible="{Binding Binding.Changed}"
+					         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y,Factor=0.5,Constant=0}"
+					         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=anchorView, 
+														  Property=Width, Factor=0, Constant=-210}"
+					         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=400}"
+    						 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.5,Constant=0}" />
+		    		</RelativeLayout>
+			</ViewCell>
+		</DataTemplate>
+	</ListView.ItemTemplate>
+</ListView>
+</ContentPage>
